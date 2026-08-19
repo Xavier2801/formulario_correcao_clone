@@ -1,0 +1,82 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 40px;
+}
+
+/* Abas */
+.tabs { display:flex; margin-bottom:20px; }
+.tab {
+    flex:1; padding:12px; cursor:pointer; border:none;
+    border-radius:6px 6px 0 0; font-weight:600;
+    background:#e2e8f0; color:#2d3748;
+    transition:background 0.3s ease, color 0.3s ease;
+}
+.tab.active[data-target="portugues"] { background:#38a169; color:#fff; }
+.tab.active[data-target="matematica"] { background:#87CEEB; color:#fff; }
+
+/* Conteúdo */
+.tab-content {
+    display:none; background:#fff; padding:30px;
+    border-radius:0 6px 6px 6px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+.tab-content.active { display:block; }
+
+/* Questões */
+.questao {
+    margin-bottom:25px;
+    padding:15px;
+    border-radius:8px;
+    transition:background 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08); /* sombra interna suave */
+}
+.questao label {
+    display:block;
+    font-weight:600;
+    margin-bottom:12px;
+    color:#2d3748;
+}
+
+/* Fundo suave Português */
+#portugues .questao {
+    background: rgba(56, 161, 105, 0.08); /* verde pastel */
+}
+#portugues .questao:hover {
+    background: rgba(56, 161, 105, 0.15); /* leve destaque */
+}
+
+/* Fundo suave Matemática */
+#matematica .questao {
+    background: rgba(135, 206, 235, 0.12); /* azul pastel */
+}
+#matematica .questao:hover {
+    background: rgba(135, 206, 235, 0.22); /* leve destaque */
+}
+
+/* Radios Português */
+#portugues input[type="radio"] {
+    appearance:none; width:18px; height:18px;
+    border:2px solid #2d3748; border-radius:50%; cursor:pointer; margin-right:8px;
+}
+#portugues input[type="radio"]:checked {
+    background:#9ACD32; border-color:#9ACD32;
+}
+
+/* Radios Matemática */
+#matematica input[type="radio"] {
+    appearance:none; width:18px; height:18px;
+    border:2px solid #2d3748; border-radius:50%; cursor:pointer; margin-right:8px;
+}
+#matematica input[type="radio"]:checked {
+    background:#87CEEB; border-color:#87CEEB;
+}
+
+/* Botão Corrigir */
+#submit-btn {
+    display:block; margin:40px auto 0; padding:14px 28px;
+    background:#38a169; color:#fff; border:none; border-radius:6px;
+    font-size:16px; cursor:pointer; transition:background 0.3s ease;
+}
+#submit-btn:hover { background:#2f855a; }
