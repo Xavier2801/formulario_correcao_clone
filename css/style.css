@@ -6,13 +6,27 @@ body {
 }
 
 /* Abas */
-.tabs { display:flex; margin-bottom:20px; }
-.tab {
-    flex:1; padding:12px; cursor:pointer; border:none;
-    border-radius:6px 6px 0 0; font-weight:600;
-    background:#e2e8f0; color:#2d3748;
-    transition:background 0.3s ease, color 0.3s ease;
+.tabs {
+    display: flex;
+    justify-content: center; /* centraliza as abas */
+    gap: 20px; /* espaço entre elas */
+    margin: 20px auto;
+    max-width: 700px; /* mesmo limite do formulário */
 }
+
+.tab {
+    flex: 1; /* cada aba ocupa metade do espaço disponível */
+    max-width: 300px; /* limite para não esticar demais */
+    text-align: center;
+    padding: 12px 0;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    background: #e2e8f0;
+    color: #2d3748;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
 .tab.active[data-target="portugues"] { background:#38a169; color:#fff; }
 .tab.active[data-target="matematica"] { background:#87CEEB; color:#fff; }
 
@@ -80,3 +94,54 @@ body {
     font-size:16px; cursor:pointer; transition:background 0.3s ease;
 }
 #submit-btn:hover { background:#2f855a; }
+
+/* ===== Formulário de seleção ===== */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2d3748;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    background: #edf2f7;
+    color: #2d3748;
+}
+
+select:focus {
+    border-color: #3182ce;
+    outline: none;
+    background: #fff;
+}
+
+/* Botão Salvar Prova */
+#submit-btn {
+    display:block; margin:40px auto 0; padding:14px 28px;
+    background:#3182ce; color:#fff; border:none; border-radius:6px;
+    font-size:16px; cursor:pointer; transition:background 0.3s ease;
+}
+#submit-btn:hover { background:#2b6cb0; }
+.btn-salvar:hover {
+    background: #2b6cb0;
+}
