@@ -2,14 +2,16 @@
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../models/RespostaModel.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if (php_sapi_name() !== 'cli' && $_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     exit("Método não permitido.");
 }
 
-$aluno_id = filter_input(INPUT_POST, 'aluno_id', FILTER_VALIDATE_INT);
+$aluno_id = filter_var($_POST['aluno_id'] ?? null, FILTER_VALIDATE_INT);
 if (!$aluno_id) {
-    http_response_code(400);
+    if (!headers_sent()) {
+        http_response_code(400);
+    }
     exit("Erro: Nenhum aluno selecionado. Volte e escolha um aluno.");
 }
 
@@ -37,6 +39,8 @@ try {
     echo "<p style='text-align:center;'><a href='../../index.php'>Voltar</a></p>";
 } catch (Throwable $e) {
     $conn->rollback();
-    http_response_code(500);
+    if (!headers_sent()) {
+        http_response_code(500);
+    }
     echo "Erro ao salvar prova: " . htmlspecialchars($e->getMessage());
 }

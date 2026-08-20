@@ -77,5 +77,6 @@ $escolas = $escolaModel->listar();
 
 <script src="js/selecao.js"></script>
 <script src="js/script.js"></script>
+<script src="js/voice.js"></script>
 </body>
 </html>
