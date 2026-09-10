@@ -1,21 +1,39 @@
 <?php
 // BLINDAGEM DO SERVIDOR EMBUTIDO:
-// Se estiver rodando no PHP Built-in Server e a requisição for para um arquivo estático que existe,
-// retorna false para que o PHP sirva o CSS/JS/imagem diretamente.
 if (php_sapi_name() === 'cli-server') {
     $caminhoArquivo = __DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     if (is_file($caminhoArquivo)) {
         return false;
     }
 }
-?>
-<?php
+
 require_once __DIR__ . "/config/database.php";
 require_once __DIR__ . "/app/models/EscolaModel.php";
 
 $conn = Database::connect();
-$escolaModel = new EscolaModel($conn);
-$escolas = $escolaModel->listar();
+$escolasLista = [];
+
+if ($conn) {
+    try {
+        $escolaModel = new EscolaModel($conn);
+        $res = $escolaModel->listar();
+        if ($res instanceof mysqli_result) {
+            while ($row = $res->fetch_assoc()) {
+                $escolasLista[] = $row;
+            }
+        }
+    } catch (Throwable $e) {
+        $escolasLista = [];
+    }
+}
+
+// Fallback de demonstração (caso o banco não exista no Render)
+if (empty($escolasLista)) {
+    $escolasLista = [
+            ['id' => 1, 'nome' => 'Escola Municipal Águas Lindas'],
+            ['id' => 2, 'nome' => 'Colégio Estadual Goiás Novo']
+    ];
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -35,19 +53,19 @@ $escolas = $escolaModel->listar();
         <label for="escola">Escola:</label>
         <select name="escola_id" id="escola" required>
             <option value="">Selecione</option>
-            <?php while ($e = $escolas->fetch_assoc()): ?>
+            <?php foreach ($escolasLista as $e): ?>
                 <option value="<?= $e['id'] ?>"><?= htmlspecialchars($e['nome']) ?></option>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </select>
 
         <label for="turma">Turma:</label>
         <select name="turma_id" id="turma" required>
-            <option value="">Selecione a Escola primeiro</option>
+            <option value="1">Turma Demonstração (Voz)</option>
         </select>
 
         <label for="aluno">Aluno:</label>
         <select name="aluno_id" id="aluno" required>
-            <option value="">Selecione a Turma primeiro</option>
+            <option value="1">Aluno Demonstração (Voz)</option>
         </select>
     </div>
 
@@ -73,10 +91,7 @@ $escolas = $escolaModel->listar();
                 <li><strong>Trocar disciplina:</strong> Diga <code>"Matemática"</code> ou <code>"Português"</code></li>
             </ul>
         </div>
-
     </div>
-
-
 
     <!-- Abas de Disciplinas -->
     <div class="tabs">
