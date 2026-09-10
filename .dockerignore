@@ -1,0 +1,6 @@
+.git
+.gitignore
+.idea
+*.bat
+iniciar_servidor_mobile.bat
+README.md
