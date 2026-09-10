@@ -140,42 +140,86 @@ select:focus {
     color: #9b2c2c;
 }
 
-/* ===== Card de Instruções (Corrigido para alinhamento e contraste) ===== */
+/* ===== Card de Instruções Refinado (Produção) ===== */
 .voice-instructions-card {
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 4px solid #3182ce; /* Borda de destaque visual */
-    border-radius: 6px;
-    padding: 12px 16px;
-    margin-top: 12px;
-    font-size: 0.85rem;
-    color: #334155;
-    line-height: 1.5;
-    text-align: left; /* Garante que a lista não fique centralizada de forma esquisita */
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-left: 5px solid #2563eb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 14px;
+    text-align: left;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .instruction-header {
-    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
     color: #0f172a;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
-.instruction-list {
-    margin: 0;
-    padding-left: 20px;
+.instruction-icon {
+    font-size: 1.1rem;
 }
 
-.instruction-list li {
-    margin-bottom: 4px;
+.instruction-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
 }
 
-.instruction-list code {
+.instruction-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+.instruction-item p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: #334155;
+}
+
+.badge-action {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1e40af;
+    letter-spacing: 0.5px;
+}
+
+.instruction-item code {
     background-color: #e2e8f0;
-    padding: 2px 6px;
+    padding: 2px 5px;
     border-radius: 4px;
     font-family: Consolas, monospace;
     font-weight: 600;
     color: #0369a1;
+}
+
+/* Alerta de encerramento do microfone */
+.voice-alert-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background-color: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 0.83rem;
+    color: #92400e;
+    line-height: 1.4;
+}
+
+.alert-icon {
+    font-size: 1rem;
+    line-height: 1;
 }
 
 /* ===== Destaque visual ao preencher por voz ===== */
@@ -329,5 +373,8 @@ select:focus {
         width: 100%;
         justify-content: center;
         font-size: 14px;
+    }
+    .instruction-grid {
+        grid-template-columns: 1fr;
     }
 }

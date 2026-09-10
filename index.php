@@ -82,16 +82,37 @@ if (empty($escolasLista)) {
             <span class="status-text">Microfone inativo. Clique para preencher o gabarito por voz.</span>
         </div>
 
-        <!-- GUIA VISUAL DE COMANDOS -->
+        <!-- GUIA VISUAL DE COMANDOS REFINADO -->
         <div class="voice-instructions-card">
-            <div class="instruction-header">📌 <strong>Padrões de voz recomendados para máxima precisão:</strong></div>
-            <ul class="instruction-list">
-                <li><strong>Preencher questão:</strong> Diga <code>"Questão 1 letra B"</code> ou <code>"1 B"</code></li>
-                <li><strong>Deixar em branco / Pular:</strong> Diga <code>"Questão 5 em branco"</code> ou <code>"Pular questão 5"</code></li>
-                <li><strong>Trocar disciplina:</strong> Diga <code>"Matemática"</code> ou <code>"Português"</code></li>
-            </ul>
+            <div class="instruction-header">
+                <span class="instruction-icon">📋</span>
+                <strong>Como ditar suas respostas (Reconhecimento Ativo):</strong>
+            </div>
+
+            <div class="instruction-grid">
+                <div class="instruction-item">
+                    <span class="badge-action">Marcação Direta</span>
+                    <p>Diga: <code>"Questão 1 letra B"</code> ou <code>"Questão 2, B"</code></p>
+                </div>
+                <div class="instruction-item">
+                    <span class="badge-action">Ditado Rápido</span>
+                    <p>Diga: <code>"3 C"</code> ou <code>"4 D"</code></p>
+                </div>
+                <div class="instruction-item">
+                    <span class="badge-action">Deixar em Branco</span>
+                    <p>Diga: <code>"Questão 5 em branco"</code> ou <code>"Pular 5"</code></p>
+                </div>
+                <div class="instruction-item">
+                    <span class="badge-action">Mudar Matéria</span>
+                    <p>Diga: <code>"Matemática"</code> ou <code>"Português"</code></p>
+                </div>
+            </div>
+
+            <div class="voice-alert-box">
+                <span class="alert-icon">⚠️</span>
+                <span><strong>Atenção ao fluxo:</strong> Ao terminar de falar, <strong>clique no botão para encerrar o microfone</strong>. Confira os círculos preenchidos na tela e, em seguida, clique em <strong>Salvar Prova</strong>.</span>
+            </div>
         </div>
-    </div>
 
     <!-- Abas de Disciplinas -->
     <div class="tabs">
