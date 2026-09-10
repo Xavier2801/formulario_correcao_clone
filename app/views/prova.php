@@ -11,6 +11,7 @@ if (!$aluno_id) {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prova do Aluno</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
@@ -19,6 +20,20 @@ if (!$aluno_id) {
 
 <form method="POST" action="../../app/controllers/RespostaController.php">
     <input type="hidden" name="aluno_id" value="<?= htmlspecialchars($aluno_id) ?>">
+
+    <!-- Painel de Comando por Voz -->
+    <div class="voice-control-panel">
+        <div class="voice-buttons-bar">
+            <button type="button" id="btn-voice-toggle" class="btn-voice">
+                <span class="mic-icon">🎤</span>
+                <span class="voice-btn-text">Ativar Comando por Voz</span>
+            </button>
+        </div>
+        <div id="voice-status" class="voice-status-box">
+            <span class="status-indicator"></span>
+            <span class="status-text">Microfone inativo. Clique para preencher o gabarito por voz.</span>
+        </div>
+    </div>
 
     <div class="tabs">
         <button type="button" class="tab active" data-target="portugues">Português</button>
@@ -49,9 +64,10 @@ if (!$aluno_id) {
         <?php endfor; ?>
     </div>
 
-    <button type="submit" class="btn-salvar">Salvar Prova</button>
+    <button type="submit" id="submit-btn" class="btn-salvar">Salvar Prova</button>
 </form>
 
 <script src="../../js/script.js"></script>
+<script src="../../js/voice.js"></script>
 </body>
 </html>

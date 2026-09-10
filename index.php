@@ -1,4 +1,15 @@
 <?php
+// BLINDAGEM DO SERVIDOR EMBUTIDO:
+// Se estiver rodando no PHP Built-in Server e a requisição for para um arquivo estático que existe,
+// retorna false para que o PHP sirva o CSS/JS/imagem diretamente.
+if (php_sapi_name() === 'cli-server') {
+    $caminhoArquivo = __DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    if (is_file($caminhoArquivo)) {
+        return false;
+    }
+}
+?>
+<?php
 require_once __DIR__ . "/config/database.php";
 require_once __DIR__ . "/app/models/EscolaModel.php";
 
@@ -39,6 +50,33 @@ $escolas = $escolaModel->listar();
             <option value="">Selecione a Turma primeiro</option>
         </select>
     </div>
+
+    <!-- Painel de Comando por Voz -->
+    <div class="voice-control-panel">
+        <div class="voice-buttons-bar">
+            <button type="button" id="btn-voice-toggle" class="btn-voice">
+                <span class="mic-icon">🎤</span>
+                <span class="voice-btn-text">Ativar Comando por Voz</span>
+            </button>
+        </div>
+        <div id="voice-status" class="voice-status-box">
+            <span class="status-indicator"></span>
+            <span class="status-text">Microfone inativo. Clique para preencher o gabarito por voz.</span>
+        </div>
+
+        <!-- GUIA VISUAL DE COMANDOS -->
+        <div class="voice-instructions-card">
+            <div class="instruction-header">📌 <strong>Padrões de voz recomendados para máxima precisão:</strong></div>
+            <ul class="instruction-list">
+                <li><strong>Preencher questão:</strong> Diga <code>"Questão 1 letra B"</code> ou <code>"1 B"</code></li>
+                <li><strong>Deixar em branco / Pular:</strong> Diga <code>"Questão 5 em branco"</code> ou <code>"Pular questão 5"</code></li>
+                <li><strong>Trocar disciplina:</strong> Diga <code>"Matemática"</code> ou <code>"Português"</code></li>
+            </ul>
+        </div>
+
+    </div>
+
+
 
     <!-- Abas de Disciplinas -->
     <div class="tabs">
